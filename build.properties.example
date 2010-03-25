@@ -1,0 +1,2 @@
+# The folder where Tomcat 6 was installed
+catalina.home = /usr/share/tomcat6
