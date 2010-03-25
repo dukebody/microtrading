@@ -1,0 +1,221 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!--
+     General purpose build script for web applications and web services,
+     including enhanced support for deploying directly to a Tomcat 6
+     based server.
+
+     This build script assumes that the source code of your web application
+     is organized into the following subdirectories underneath the source
+     code directory from which you execute the build script:
+
+        docs                 Static documentation files to be copied to
+                             the "docs" subdirectory of your distribution.
+
+        src                  Java source code (and associated resource files)
+                             to be compiled to the "WEB-INF/classes"
+                             subdirectory of your web application.
+
+        web                  Static HTML, JSP, and other content (such as
+                             image files), including the WEB-INF subdirectory
+                             and its configuration file contents.
+
+     $Id: build.xml.txt 785727 2009-06-17 17:03:57Z kkolinko $
+-->
+
+
+<!-- A "project" describes a set of targets that may be requested
+     when Ant is executed.  The "default" attribute defines the
+     target which is executed if no specific target is requested,
+     and the "basedir" attribute defines the current working directory
+     from which Ant executes the requested task.  This is normally
+     set to the current working directory.
+-->
+
+<project name="Microtrading" default="compile" basedir=".">
+
+
+
+<!-- ===================== Property Definitions =========================== -->
+
+
+<!--
+
+  Each of the following properties are used in the build script.
+  Values for these properties are set by the first place they are
+  defined, from the following list:
+
+  * Definitions on the "ant" command line (ant -Dfoo=bar compile).
+
+  * Definitions from a "build.properties" file in the top level
+    source directory of this application.
+
+  * Definitions from a "build.properties" file in the developer's
+    home directory.
+
+  * Default definitions in this build.xml file.
+
+  You will note below that property values can be composed based on the
+  contents of previously defined properties.  This is a powerful technique
+  that helps you minimize the number of changes required when your development
+  environment is modified.  Note that property composition is allowed within
+  "build.properties" files as well as in the "build.xml" script.
+
+-->
+
+  <property file="build.properties"/>
+  <property file="${user.home}/build.properties"/>
+
+
+<!-- ==================== File and Directory Names ======================== -->
+
+
+<!--
+
+  These properties generally define file and directory names (or paths) that
+  affect where the build process stores its outputs.
+
+  build.home           The directory into which the "prepare" and
+                       "compile" targets will generate their output.
+                       Defaults to "build".
+
+  src.home             The directory with the .java files to be compiled
+                       and placed into WEB-INFO/classes.
+
+-->
+
+  <property name="build.home"    value="${basedir}"/>
+  <property name="src.home"      value="${basedir}/src"/>
+
+
+<!-- ==================== External Dependencies =========================== -->
+
+
+<!--
+
+  Use property values to define the locations of external JAR files on which
+  your application will depend.  In general, these values will be used for
+  two purposes:
+  * Inclusion on the classpath that is passed to the Javac compiler
+  * Being copied into the "/WEB-INF/lib" directory during execution
+    of the "deploy" target.
+
+  Because we will automatically include all of the Java classes that Tomcat 6
+  exposes to web applications, we will not need to explicitly list any of those
+  dependencies.  You only need to worry about external dependencies for JAR
+  files that you are going to include inside your "/WEB-INF/lib" directory.
+
+-->
+
+<!-- Dummy external dependency -->
+<!--
+  <property name="foo.jar"
+           value="/path/to/foo.jar"/>
+-->
+
+
+<!-- ==================== Compilation Classpath =========================== -->
+
+<!--
+
+  Rather than relying on the CLASSPATH environment variable, Ant includes
+  features that makes it easy to dynamically construct the classpath you
+  need for each compilation.  The example below constructs the compile
+  classpath to include the servlet.jar file, as well as the other components
+  that Tomcat makes available to web applications automatically, plus anything
+  that you explicitly added.
+
+-->
+
+  <path id="compile.classpath">
+
+    <!-- Include all JAR files that will be included in /WEB-INF/lib -->
+    <!-- *** CUSTOMIZE HERE AS REQUIRED BY YOUR APPLICATION *** -->
+<!--
+    <pathelement location="${foo.jar}"/>
+-->
+
+    <!-- Include all elements that Tomcat exposes to applications -->
+    <fileset dir="${catalina.home}/bin">
+      <include name="*.jar"/>
+    </fileset>
+    <pathelement location="${catalina.home}/lib"/>
+    <fileset dir="${catalina.home}/lib">
+      <include name="*.jar"/>
+    </fileset>
+
+  </path>
+
+
+
+<!-- ================== Custom Ant Task Definitions ======================= -->
+
+
+  <taskdef resource="org/apache/catalina/ant/catalina.tasks"
+           classpathref="compile.classpath"/>
+
+
+<!--  ==================== Compilation Control Options ==================== -->
+
+<!--
+
+  These properties control option settings on the Javac compiler when it
+  is invoked using the <javac> task.
+
+  compile.debug        Should compilation include the debug option?
+
+  compile.deprecation  Should compilation include the deprecation option?
+
+  compile.optimize     Should compilation include the optimize option?
+
+-->
+
+  <property name="compile.debug"       value="true"/>
+  <property name="compile.deprecation" value="false"/>
+  <property name="compile.optimize"    value="true"/>
+
+
+<!-- ==================== Compile Target ================================== -->
+
+<!--
+
+  The "compile" target transforms source files (from your "src" directory)
+  into object files in the appropriate location in the build directory.
+  This example assumes that you will be including your classes in an
+  unpacked directory hierarchy under "/WEB-INF/classes".
+
+-->
+
+  <target name="compile" description="Compile Java sources">
+
+    <!-- Compile Java classes as necessary -->
+    <mkdir    dir="${build.home}/WEB-INF/classes"/>
+    <javac srcdir="${src.home}"
+          destdir="${build.home}/WEB-INF/classes"
+            debug="${compile.debug}"
+      deprecation="${compile.deprecation}"
+         optimize="${compile.optimize}">
+        <classpath refid="compile.classpath"/>
+    </javac>
+
+  </target>
+
+
+
+
+</project>
