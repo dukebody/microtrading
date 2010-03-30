@@ -1,6 +1,25 @@
 .center {text-align: center;}
+
 .help {
 	font-size: 12px;
 	color: grey;
 	}
+
 .question {font-size: 50px;}
+
+.label {
+    float: left; 
+    width: 230px; 
+    margin-right: 10px;
+    text-align: right;
+    font-weight: bold;
+    clear: left;
+}
+
+.field { width: 700px; }
+
+h1 { margin-left: 240px; }
+
+#content > div { margin-bottom: 3px; }
+
+#description div { height: 200px; }
