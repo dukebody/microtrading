@@ -1,1 +1,6 @@
-div.center {text-align: center;}
+.center {text-align: center;}
+.help {
+	font-size: 12px;
+	color: grey;
+	}
+.question {font-size: 50px;}
