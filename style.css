@@ -1,3 +1,4 @@
+@CHARSET "ISO-8859-1";
 .center {text-align: center;}
 
 .help {
@@ -7,7 +8,7 @@
 
 .question {font-size: 50px;}
 
-.label {
+label, .label {
     float: left; 
     width: 230px; 
     margin-right: 10px;
@@ -20,6 +21,6 @@
 
 h1 { margin-left: 240px; }
 
-#content > div { margin-bottom: 3px; }
+.form { margin-top: 100px; }
 
-#description div { height: 200px; }
+#content { margin-bottom: 3px; }
