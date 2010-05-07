@@ -1,5 +1,5 @@
 CREATE TABLE items
-(id integer not null primary key,
+(id integer not null auto_increment primary key,
  name char(100) not null,
  description varchar(500),
  price decimal(2) not null,
