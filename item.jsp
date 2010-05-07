@@ -1,6 +1,7 @@
 <%@page session="false" %>
 <%@page import="java.sql.*" %>
-<% String item_id = request.getParameter("item_id");%>
+<% String item_id = request.getParameter("item_id");
+String hash = request.getParameter("hash");%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,7 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Detail of your item</title>
-		<link rel="stylesheet"  type="text/css" title="Style" href="style.css" />
+		<link rel="stylesheet"  type="text/css" href="style.css" />
 	</head>
 	<body>
 
