@@ -20,7 +20,7 @@
        Class.forName("com.mysql.jdbc.Driver");
    }
    catch (ClassNotFoundException cnf) {
-       out.println("blablao");
+       out.println("Couldn't load database driver.");
 	   }
    
    try{
@@ -34,17 +34,15 @@
 	   Statement st = conn.createStatement();
 	   String query = "SELECT name, description, price, contact FROM items WHERE id=" + item_id;
 	   ResultSet result = st.executeQuery(query);
-	   result.next();
-	   String title = result.getString("name");
-	   String description = result.getString("description");
-	   Long price = result.getLong("price");
-	   String contact = "contact";
 	   
-	   // end of db connection
-	   result.close();
-	   st.close();
-	   conn.close();
+	   if (result.next()) {
+	       // item found
+	       String title = result.getString("name");
+	       String description = result.getString("description");
+	       Long price = result.getLong("price");
+	       String contact = result.getString("contact");
 
+	       // render it
 %>
 
 
@@ -61,11 +59,24 @@
 
 
 <%
-		}  // end of "if {" above
+	   }
+	   else {
+%>
+	   <h1>Item not found</h1>
+	   <p>Please check the id of the element you're looking for.</p>
+<%
+	   }
+
+	   // close db connection
+	   result.close();
+	   st.close();
+	   conn.close();
+
+       }  // end of "if (conn != null) {" above
        
    } // end of "try {" above
    catch(SQLException e){
-       out.println("<h3>"+ e.getMessage()+"</h3>");       
+       out.println("<h1>Error</h1><h3>"+ e.getMessage()+"</h3>");
        }
 
 
