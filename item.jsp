@@ -2,18 +2,19 @@
 <%@page import="java.sql.*" %>
 <% String item_id = request.getParameter("item_id");
 String hash_attempt = request.getParameter("hash");
-Boolean hash_ok = false;%>
+Boolean hash_ok = false;
+Boolean item_found = false;%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Detail of your item</title>
-		<link rel="stylesheet"  type="text/css" href="style.css" />
-	</head>
-	<body>
-
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Detail of your item</title>
+    <link rel="stylesheet"  type="text/css" href="style.css" />
+  </head>
+  <body>
+    
 <%    
    Connection conn = null;
    // load the mysql db driver
@@ -22,7 +23,7 @@ Boolean hash_ok = false;%>
    }
    catch (ClassNotFoundException cnf) {
        out.println("Couldn't load database driver.");
-	   }
+   }
    
    try{
        // connect to the database
@@ -30,14 +31,16 @@ Boolean hash_ok = false;%>
            "jdbc:mysql://localhost:3306/microtrading",
 	   "microtrading", "microtrading");
        
+
        // issue a query and read the results
-       if (conn != null) {
+       if (conn != null && item_id != null && item_id.length()>0) {
 	   Statement st = conn.createStatement();
 	   String query = "SELECT name, description, price, contact, hash FROM items WHERE id=" + item_id;
 	   ResultSet result = st.executeQuery(query);
 	   
 	   if (result.next()) {
 	       // item found
+	       item_found = true;
 	       String title = result.getString("name");
 	       String description = result.getString("description");
 	       Long price = result.getLong("price");
@@ -62,18 +65,19 @@ Boolean hash_ok = false;%>
 
 
 <%
-	   }
-	   else {
-%>
-	   <h1>Item not found</h1>
-	   <p>Please check the id of the element you're looking for.</p>
-<%
-	   }
-
+		}
 	   // close db connection
 	   result.close();
 	   st.close();
 	   conn.close();
+
+       }
+       if (!item_found) {
+%>
+	   <h1>Item not found</h1>
+	   <p>Please check the id of the element you're looking for.</p>
+<%
+
 
        }  // end of "if (conn != null) {" above
        
