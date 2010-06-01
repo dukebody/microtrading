@@ -5,8 +5,6 @@
 	color: grey;
 	}
 
-.question {font-size: 50px;}
-
 label, .label {
     float: left; 
     width: 230px; 
@@ -95,3 +93,8 @@ a.tooltip:hover span, a.tooltip:focus span, a.tooltip:active span
     height     :  auto;
     overflow   :  visible;
 }                 
+
+.footer a {
+    margin: 0 12px;
+    font-size: 12px;
+}
