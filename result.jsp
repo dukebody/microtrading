@@ -5,6 +5,13 @@
 String keywords = request.getParameter("item"); 
 String query_sell = "SELECT * FROM items WHERE buy_sell=0 AND name LIKE '%" + keywords + "%'";
 String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + keywords + "%'";
+String name;
+String description;
+String price;
+Timestamp date;
+String location;
+String contact;
+String link_item;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,7 +21,7 @@ String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + key
 		<link rel="stylesheet"  type="text/css" title="Style" href="style.css" />
 	</head>
 	<body>
-		<form action = result.jsp method="get">
+		<form action ="result.jsp" method="get">
 				<input name="item" id = "item" type="text" size=60 value="<%=keywords%>" />
 				<input name="submit" type="submit" value="Trade now!" />
 		</form>
@@ -42,15 +49,13 @@ String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + key
 			<div class="list">
 				<%  	
 				ResultSet result_sell = st.executeQuery(query_sell);
-				String name; String price; String location; String description; String link_item; String contact; String date;
 				while (result_sell.next()) {
-				 
-				 name = (result_sell.getString(2));
-				 description = (result_sell.getString(3));
-				 price = (result_sell.getString(4));
-				 date = (result_sell.getString(5));
-				 location = (result_sell.getString(6));
-				 contact = (result_sell.getString(7));
+				    name = result_sell.getString("name");
+				    description = result_sell.getString("description");
+				    price = result_sell.getString("price");
+				    date = result_sell.getTimestamp("date");
+				    location = result_sell.getString("location");
+				    contact = result_sell.getString("contact");
 				%>
 				
 				<a class="tooltip" href= "item.jsp?name=<%=name%>&amp;description=<%=description%>&amp;price=<%=price%>&amp;location=<%=location%>&amp;contact=<%=contact%>&amp;date=<%=date%>" ><%=name %> 
@@ -72,13 +77,12 @@ String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + key
 				<%  	
 				ResultSet result_buy = st.executeQuery(query_buy);
 				while (result_buy.next()) {
-					
-					name = (result_buy.getString(2));
-					description = (result_buy.getString(3));
-					price = (result_buy.getString(4));
-					date = (result_buy.getString(5));
-					location = (result_buy.getString(6)); 
-					contact = (result_buy.getString(7));
+				     name = result_buy.getString("name");
+				     description = result_buy.getString("description");
+				     price = result_buy.getString("price");
+				     date = result_buy.getTimestamp("date");
+				     location = result_buy.getString("location"); 
+				     contact = result_buy.getString("contact");
 				%>
 				<a class="tooltip" href= "item.jsp?name=<%=name%>&amp;description=<%=description%>&amp;price=<%=price%>&amp;location=<%=location%>&amp;contact=<%=contact%>&amp;date=<%=date%>" ><%=name %> 
 					<span>
@@ -107,13 +111,11 @@ String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + key
 	%>
 	<br/><br/><br/><br/><br/>
 	
-	<div id="downpage">
-	<form action = "form.jsp" method="get" >
+	<form id="downpage" action="form.jsp" method="get" >
 		<input name="item" id = "item" type="text" size=60 value="<%=keywords%>" />
 		<br/>
 		<input name="sell_buy"  type="submit" value="Sell"/>
 		<input name="sell_buy"  type="submit" value="Buy"/>
 	</form>
-	</div>
 	</body>
 </html>
