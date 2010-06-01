@@ -28,8 +28,8 @@ Boolean item_found = false;%>
    try{
        // connect to the database
        conn = DriverManager.getConnection(
-           "jdbc:mysql://localhost:3306/microtrading",
-	   "microtrading", "microtrading");
+           "jdbc:mysql://localhost:3306/simpletrade",
+	   "simpletrade", "simpletrade");
        
 
        // issue a query and read the results

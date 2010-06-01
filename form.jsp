@@ -117,7 +117,7 @@
 		}
 		try {
 			// connect to the database
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/simpletrade","root", "");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/simpletrade","simpletrade", "simpletrade");
 			if (conn != null) {
 				Statement st = conn.createStatement();
 				st.executeUpdate(query);

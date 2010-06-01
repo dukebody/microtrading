@@ -31,7 +31,7 @@ String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + key
 	}  
 	try {
 		// connect to the database
-		conn = DriverManager.getConnection("jdbc:mysql://localhost/simpletrade","root", "");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost/simpletrade","simpletrade", "simpletrade");
 		if (conn != null) {
 			Statement st = conn.createStatement();
 	%>
