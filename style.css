@@ -98,3 +98,9 @@ a.tooltip:hover span, a.tooltip:focus span, a.tooltip:active span
     margin: 0 12px;
     font-size: 12px;
 }
+
+
+.discreet {
+    color: #a9a9a9;
+    font-size: x-small;
+}
