@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Form</title>
-		<link rel="stylesheet"  type="text/css" title="Style" href="style.css" />
+		<link rel="stylesheet"  type="text/css" href="style.css" />
 		
 	<script type="text/javascript">
-	<!--
+	  <!--
 			function isEmpty(str) {
 				if (str == null || str == "")
 					return true;
@@ -46,7 +46,7 @@
 	<body>
 	<%
 	String name = request.getParameter("name");
-	if (name == null) { // i.e. if the user hasn't filled in the form yet
+	if (name == null) { // the user hasn't filled in the form yet
 	%>	
 		<form action="form.jsp" method="post" class="form" onSubmit="return validateForm(this);">
 		<!-- the form cannot be posted without a name and a contact, and the price must be numeric. !-->
@@ -69,7 +69,7 @@
 				<span class="label">Sell or buy?</span>	
 				<!-- pre-selection of "sell" or "buy" according to the choice of the user on the page "result"!-->
 		<% 
-		if (sell_buy.equals("Sell") == true) {%>			
+		if (sell_buy.equals("sell") == true) {%>			
 				<input name="sell_buy" id="sell" value="sell" type="radio" checked="checked"/>Sell
 				<input name="sell_buy" id="buy" value="buy" type="radio"/>Buy
 		<%

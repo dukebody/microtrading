@@ -1,15 +1,15 @@
 <%@page session="false" %>
 <%@page import="java.sql.*" %>
-<% String item_id = request.getParameter("item_id");
+<% String item_id = request.getParameter("id");
 String hash_attempt = request.getParameter("hash");
 Boolean hash_ok = false;
 Boolean item_found = false;%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Detail of your item</title>
     <link rel="stylesheet"  type="text/css" href="style.css" />
   </head>
@@ -99,7 +99,6 @@ out.println("<p style=\"margin-right:500px; float:left\"><a href=\"form.jsp?hash
 
      }
 %>
-          <p style="float:right"><a href="whatever.jsp">Back</a></p>
        </div>
   </body>
 

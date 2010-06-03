@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
 <%
 String keywords = request.getParameter("item"); 
 String query_sell = "SELECT * FROM items WHERE buy_sell=0 AND name LIKE '%" + keywords + "%'";
 String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + keywords + "%'";
+Integer id;
 String name;
 String description;
 String price;
@@ -15,17 +16,30 @@ String link_item;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Results for "<%=keywords %>"</title>
-		<link rel="stylesheet"  type="text/css" title="Style" href="style.css" />
-	</head>
-	<body>
-		<form action ="result.jsp" method="get">
-				<input name="item" id = "item" type="text" size=60 value="<%=keywords%>" />
-				<input name="submit" type="submit" value="Trade now!" />
-		</form>
-	<%
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+      <title>Simpletrade - <%=keywords %></title>
+      <link rel="stylesheet"  type="text/css" title="Style" href="style.css" />
+    </head>
+    <body>
+      <a href="./">
+	<img class="noborder" style="float:left;" 
+	       src="images/logo-200x68.jpg" alt="simpletrade" />
+      </a>
+      <br />
+      <form action="result.jsp" method="get">
+	<input name="item" id="item" type="text" size="50px" value="<%=keywords%>" />
+	<input name="submit" type="submit" value="Trade now!" />
+      </form>
+      <span class="small">
+	Didn't find what you were looking for? Post an add to 
+	<a href="form.jsp?item=<%=keywords%>&amp;sell_buy=buy">buy</a> or
+	<a href="form.jsp?item=<%=keywords%>&amp;sell_buy=sell">sell</a>
+	this item.
+      </span>
+      
+
+      <%
 	Connection conn = null;
 	// load the mysql db driver
 	try {
@@ -33,7 +47,7 @@ String link_item;
 	}
 	catch (ClassNotFoundException cnf) { 
 	%>
-		<h1>Could not find the JDBC driver</h1>
+	<h1>Could not find the JDBC driver</h1>
 	<% 
 	}  
 	try {
@@ -42,58 +56,63 @@ String link_item;
 		if (conn != null) {
 			Statement st = conn.createStatement();
 	%>
-		<h1>Results for "<%=keywords %>":</h1>
-		
-		<div id="result_sell">
-			<h2>Items for sale:</h2>
-			<div class="list">
-				<%  	
-				ResultSet result_sell = st.executeQuery(query_sell);
-				while (result_sell.next()) {
-				    name = result_sell.getString("name");
-				    description = result_sell.getString("description");
-				    price = result_sell.getString("price");
-				    date = result_sell.getTimestamp("date");
-				    location = result_sell.getString("location");
-				    contact = result_sell.getString("contact");
-				%>
-				
-				<a class="tooltip" href= "item.jsp?name=<%=name%>&amp;description=<%=description%>&amp;price=<%=price%>&amp;location=<%=location%>&amp;contact=<%=contact%>&amp;date=<%=date%>" ><%=name %> 
-					<span>
-					Price : <%= price %>€ </br>
-					Location : <%=location%>
-					</span>
-				</a>
+	<br style="clear: both;" />
+	
+	<div id="result_sell">
+	  <h2>For sale</h2>
 
-				<br/>
-				<%	}	%>
-			</div>
-		</div>
+	    <table>
+	      <tr>
+		<th>Name</th><th>Price</th><th>Location</th>
+	      </tr>
+	    <%  	
+	      ResultSet result_sell = st.executeQuery(query_sell);
+	      while (result_sell.next()) {
+		  id = result_sell.getInt("id");
+                  name = result_sell.getString("name");
+		  description = result_sell.getString("description");
+		  price = result_sell.getString("price");
+		  date = result_sell.getTimestamp("date");
+		  location = result_sell.getString("location");
+		  contact = result_sell.getString("contact");
+	     %>
 		
-		<div id="result_buy">
-			<h2>Requested items:</h2>
-			
-			<div class="list">
-				<%  	
-				ResultSet result_buy = st.executeQuery(query_buy);
-				while (result_buy.next()) {
-				     name = result_buy.getString("name");
-				     description = result_buy.getString("description");
-				     price = result_buy.getString("price");
-				     date = result_buy.getTimestamp("date");
-				     location = result_buy.getString("location"); 
-				     contact = result_buy.getString("contact");
-				%>
-				<a class="tooltip" href= "item.jsp?name=<%=name%>&amp;description=<%=description%>&amp;price=<%=price%>&amp;location=<%=location%>&amp;contact=<%=contact%>&amp;date=<%=date%>" ><%=name %> 
-					<span>
-					Price : <%= price %>€ </br>
-					Location : <%=location%>
-					</span>
-				</a>
-				<br/>
-				<%	}	%>
-			</div>
-		</div>
+	       <tr>
+		 <td><a href="item.jsp?id=<%=id%>"><%=name %></a></td>
+		 <td><%= price %></td>
+		 <td><%=location%></td>
+	       </tr>	   
+	     <%	}	%>
+	     </table>
+	   </div>
+	 
+	 <div id="result_buy">
+	   <h2>Requested</h2>
+	    <table>
+	      <tr>
+		<th>Name</th><th>Price</th><th>Location</th>
+	      </tr>			
+	      <%  	
+	       ResultSet result_buy = st.executeQuery(query_buy);
+	       while (result_buy.next()) {
+		   id = result_buy.getInt("id");
+	           name = result_buy.getString("name");
+                   description = result_buy.getString("description");
+		   price = result_buy.getString("price");
+		   date = result_buy.getTimestamp("date");
+		   location = result_buy.getString("location"); 
+		   contact = result_buy.getString("contact");
+	      %>
+
+		
+	      <tr>
+		<td><a href="item.jsp?id=<%=id%>"><%=name %></a></td>
+		<td><%= price %></td>
+		<td><%=location%></td>
+	      </tr>	   
+	      <%	}	%>
+	 </table>
+       </div>
 		
 			<%
 			result_sell.close();
@@ -109,13 +128,5 @@ String link_item;
 		out.println("<h3>"+ e.getMessage()+"</h3>");
 	}
 	%>
-	<br/><br/><br/><br/><br/>
-	
-	<form id="downpage" action="form.jsp" method="get" >
-		<input name="item" id = "item" type="text" size=60 value="<%=keywords%>" />
-		<br/>
-		<input name="sell_buy"  type="submit" value="Sell"/>
-		<input name="sell_buy"  type="submit" value="Buy"/>
-	</form>
-	</body>
+      </body>
 </html>

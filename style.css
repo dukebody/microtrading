@@ -1,9 +1,9 @@
 .center {text-align: center;}
 
 .help {
-	font-size: 12px;
-	color: grey;
-	}
+    font-size: 12px;
+    color: gray;
+}
 
 label, .label {
     float: left; 
@@ -22,77 +22,28 @@ h1 { margin-left: 240px; }
 
 #content { margin-bottom: 3px; }
 
-body
-{
-   width: 760px;
-   margin: auto; 
-   margin-top: 20px; 
-   margin-bottom: 20px; 
+body {
+    width: 760px;
+    margin: auto; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
 }
 
-
-
-#result_buy{
-float : right;
-background-color : yellow;
-
-height : 200 px;
-width : 350px;
-
-overflow : scroll;
+#result_buy {
+    float: left;
+    width: 350px;
 }
 
-#result_sell{
-
-height : 200 px;
-width : 25%;
-position : absolute ;
-top : 300 px;
-left : 1000 px;
-background-color : green;
-
-overflow : scroll;
+#result_sell {
+    float: left; 
+    width: 350px;
 }
+
 #downpage{
-position : absolute;
-bottom : 200px;
-height : 200 px;
-width : 50%;
-text-align : center;
+    height: 200px;
+    width: 50%;
+    text-align: center;
 }
-
-
-
-a.tooltip span
-{								   
-    position       :  absolute;
-    top            :  -2000em;
-    left           :  -2000em;
-    width          :  1px;
-    height         :  1px;
-    overflow       :  hidden; 
-    background     :  #DDEEFF;   /* background color, to see the tooltip */
-    border         :  1px solid #6699FF;
-}              
-
-
-a.tooltip
-{				
-  color           : #2F368A; /* color of the link */
-  font-size       : 1.2em;     
-  text-decoration : none;    /* no stressed text */  
-  padding         : 2px 12px 2px 2px;   
-  background      : transparent url('comment.gif') no-repeat right center;
-}              
-                
-a.tooltip:hover span, a.tooltip:focus span, a.tooltip:active span 
-{
-    top        :  auto;
-    left       :  auto;
-    width      :  220px;
-    height     :  auto;
-    overflow   :  visible;
-}                 
 
 .footer a {
     margin: 0 12px;
@@ -103,4 +54,12 @@ a.tooltip:hover span, a.tooltip:focus span, a.tooltip:active span
 .discreet {
     color: #a9a9a9;
     font-size: x-small;
+}
+
+.small {
+    font-size: small;
+}
+
+a img {
+    border: none;
 }
