@@ -11,38 +11,52 @@
 	</head>
 	<body>
 	  <h1>Post an ad</h1>
-	<%
-	String name = request.getParameter("name");
-	if (name == null) { // the user hasn't filled in the form yet
-	%>	
+      <%
+String name = request.getParameter("name");
+name = (name != null) ? name : "";
+
+String sell_buy = (String) request.getParameter("sell_buy");
+sell_buy = (sell_buy != null) ? sell_buy : "sell";
+
+String description = request.getParameter("description"); 
+description = (description != null) ? description : "";
+
+String price = request.getParameter("price");
+price = (price != null) ? price : "";
+
+String location = request.getParameter("location");
+location = (location != null) ? location : "";
+
+String contact = request.getParameter("contact");
+contact = (contact != null) ? contact : "";
+
+String submitted = request.getParameter("submit");
+if (submitted == null) { // the user hasn't filled in the form yet
+    %>	
 		<form action="form.jsp" method="post" onsubmit="return validateForm(this);">
 		<!-- the form cannot be posted without a name and a contact, and the price must be numeric. !-->
-		<%
-		String item = request.getParameter("item");
-		String sell_buy = request.getParameter("sell_buy");
-		%>
-				<label for="name">Name </label><input name="name" id="name" type="text" value="<%=item%>"/>
+				<label for="name">Name </label><input name="name" id="name" type="text" value="<%=name%>"/>
 				<br/><br/>
 				<label for="description">Description </label>
-				<textarea name="description" id="description" rows="4" cols="50"></textarea>
+				<textarea name="description" id="description" rows="4" cols="50"><%=description%></textarea>
 				<br/><br/>
-				<label for="price">Price in EUR </label><input name="price" id="price" type="text" />
+				<label for="price">Price in EUR </label><input name="price" id="price" type="text" value="<%=price%>" />
 				<br/><br/>
-				<label for="location">Location </label><input name="location" id="location" type="text"/>
+				<label for="location">Location </label><input name="location" id="location" type="text" value="<%=location%>"/>
 				<br/><br/>
-				<label for="contact">Contact </label><input name="contact" id="contact" type="text"/>
+				<label for="contact">Contact </label><input name="contact" id="contact" type="text" value="<%=contact%>"/>
 				<br/><br/>
 				<span class="label">You want to</span>	
 				<!-- pre-selection of "sell" or "buy" according to the choice of the user on the page "result"!-->
 		<% 
 		if (sell_buy.equals("sell") == true) {%>			
-				<input name="sell_buy" id="sell" value="sell" type="radio" checked="checked"/>Sell
-				<input name="sell_buy" id="buy" value="buy" type="radio"/>Buy
+				<input name="sell_buy" id="sell" value="sell" type="radio" checked="checked" />Sell
+				<input name="sell_buy" id="buy" value="buy" type="radio" />Buy
 		<%
 		} 
 		else {%>
 				<input name="sell_buy" id="sell" value="sell" type="radio" />Sell
-				<input name="sell_buy" id="buy" value="buy" type="radio"checked="checked"/>Buy
+				<input name="sell_buy" id="buy" value="buy" type="radio" checked="checked" />Buy
 		<%}%>
 				<br/><br/>
 				<div class="center">
@@ -53,19 +67,13 @@
 	// end of if
 	}
 	else { // The form has already been filled.
-		String description = request.getParameter("description");
-		String p = request.getParameter("price");
-		Float price;
-		if (p != null) {
-			price = Float.valueOf(p);
-		}
-		String location = request.getParameter("location");
-		String contact = request.getParameter("contact");
-		String sell_buy = request.getParameter("sell_buy");
-		int buy;
-		if (sell_buy.equals("buy")==true) {buy = 1;}
-		else {buy = 0;}
-	
+	    Float p;
+	    if (price != null) {
+		p = Float.valueOf(price);
+	    }
+	    int buy;
+	    if (sell_buy.equals("buy")==true) {buy = 1;}
+	    else {buy = 0;}
 		String query = "INSERT INTO items(name, description, price, date, location, contact, buy_sell, hash)" +
 					   String.format("VALUES('%s', '%s', %s, NOW(), '%s', '%s', '%d', '%s')", name, description, p, location, contact, buy, "");
 		
@@ -94,7 +102,7 @@
 		%>
 		<p>
 			Your request has been registered.<br/><br/>
-			<a href="item.jsp?name=<%=name%>&amp;description=<%=description%>&amp;price=<%=p%>&amp;location=<%=location%>&amp;contact=<%=contact%>&amp;sell_buy=<%=sell_buy%>&amp;date=now">
+			<a href="item.jsp?name=<%=name%>&amp;description=<%=description%>&amp;price=<%=price%>&amp;location=<%=location%>&amp;contact=<%=contact%>&amp;sell_buy=<%=sell_buy%>&amp;date=now">
 				See the details
 			</a><br/><br/>
 			<a href="result.jsp?item=<%=name%>">

@@ -33,8 +33,8 @@ String link_item;
       </form>
       <span class="small">
 	Didn't find what you were looking for? Post an add to 
-	<a href="form.jsp?item=<%=keywords%>&amp;sell_buy=buy">buy</a> or
-	<a href="form.jsp?item=<%=keywords%>&amp;sell_buy=sell">sell</a>
+	<a href="form.jsp?name=<%=keywords%>&amp;sell_buy=buy">buy</a> or
+	<a href="form.jsp?name=<%=keywords%>&amp;sell_buy=sell">sell</a>
 	this item.
       </span>
       
