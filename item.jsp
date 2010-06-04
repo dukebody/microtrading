@@ -54,13 +54,13 @@ Boolean item_found = false;%>
 %>
 	   <h1>Item details</h1>
 	   <div id="content">
-	     <div><div class="label">Title: </div><div class="field"><%=title%></div></div><br/>
+	     <div><div class="label">Name </div><div class="field"><%=title%></div></div><br/>
 	     <div>
-	       <div class="label">Description: </div>
+	       <div class="label">Description </div>
 	       <div class="field"><%=description%></div>
 	       </div><br/>
-	       <div><div class="label">Price: </div><div class="field"><%=price%></div></div><br/>
-	       <div><div class="label">Contact: </div><div class="field"><%=contact%></div></div><br/>
+	       <div><div class="label">Price </div><div class="field"><%=price%></div></div><br/>
+	       <div><div class="label">Contact </div><div class="field"><%=contact%></div></div><br/>
 	       </div><br/>
 
 

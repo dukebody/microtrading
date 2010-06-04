@@ -44,29 +44,29 @@
 	</script>
 	</head>
 	<body>
+	  <h1>Post an ad</h1>
 	<%
 	String name = request.getParameter("name");
 	if (name == null) { // the user hasn't filled in the form yet
 	%>	
-		<form action="form.jsp" method="post" class="form" onSubmit="return validateForm(this);">
+		<form action="form.jsp" method="post" onsubmit="return validateForm(this);">
 		<!-- the form cannot be posted without a name and a contact, and the price must be numeric. !-->
 		<%
 		String item = request.getParameter("item");
 		String sell_buy = request.getParameter("sell_buy");
 		%>
-			<p>
-				<label for="name">Name: </label><input name="name" id="name" type="text" value="<%=item%>"/>
+				<label for="name">Name </label><input name="name" id="name" type="text" value="<%=item%>"/>
 				<br/><br/>
-				<label for="description">Description: </label>
-				<textarea name="description" id="description" rows="4" cols="80"></textarea>
+				<label for="description">Description </label>
+				<textarea name="description" id="description" rows="4" cols="50"></textarea>
 				<br/><br/>
-				<label for="price">Price in EUR: </label><input name="price" id="price" type="text" />
+				<label for="price">Price in EUR </label><input name="price" id="price" type="text" />
 				<br/><br/>
-				<label for="location">Location: </label><input name="location" id="location" type="text"/>
+				<label for="location">Location </label><input name="location" id="location" type="text"/>
 				<br/><br/>
-				<label for="contact">Contact: </label><input name="contact" id="contact" type="text"/>
+				<label for="contact">Contact </label><input name="contact" id="contact" type="text"/>
 				<br/><br/>
-				<span class="label">Sell or buy?</span>	
+				<span class="label">You want to</span>	
 				<!-- pre-selection of "sell" or "buy" according to the choice of the user on the page "result"!-->
 		<% 
 		if (sell_buy.equals("sell") == true) {%>			
@@ -79,11 +79,10 @@
 				<input name="sell_buy" id="buy" value="buy" type="radio"checked="checked"/>Buy
 		<%}%>
 				<br/><br/>
-				<p class="center">
+				<div class="center">
 					<input name="submit" type="submit" value="Send"/>
 					<input name="reset" type="reset" value="Reset"/>
-				</p>
-			</p>
+				</div>
 		</form>
 	<%
 	// end of if
