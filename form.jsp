@@ -5,43 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Form</title>
+		<title>Simpletrade - Post an ad</title>
 		<link rel="stylesheet"  type="text/css" href="style.css" />
-		
-	<script type="text/javascript">
-	  <!--
-			function isEmpty(str) {
-				if (str == null || str == "")
-					return true;
-				return false;
-			}
-			function trim(str) {
-				if (str!=null) {
-					while (str.length > 0 && str.charAt(str.length - 1) == " ")
-						str = str.substring(0, str.length - 1);
-					while (str.length > 0 && str.charAt(0) == " ")
-						str = str.substring(1, str.length);
-				}
-				return str;
-			}
-				
-			function validateForm(theForm) {
-				
-				if (isEmpty(trim(theForm.elements["name"].value))) {
-					alert("Please enter a name"); return false;
-				}
-				if (isEmpty(trim(theForm.elements["contact"].value))) {
-					alert("Please fill the contact field"); return false;
-				}
-				
-				if (isNaN(theForm.elements["price"].value)== true ){
-					alert("Please enter a numeric price"); return false;
-				
-				}
-				return true;
-			}
-	//-->		
-	</script>
+		<script type="text/javascript" src="validation.js"></script>
 	</head>
 	<body>
 	  <h1>Post an ad</h1>
@@ -80,8 +46,7 @@
 		<%}%>
 				<br/><br/>
 				<div class="center">
-					<input name="submit" type="submit" value="Send"/>
-					<input name="reset" type="reset" value="Reset"/>
+					<input name="submit" type="submit" value="Post"/>
 				</div>
 		</form>
 	<%
