@@ -34,42 +34,40 @@ Boolean item_found = false;%>
 
        // issue a query and read the results
        if (conn != null && item_id != null && item_id.length()>0) {
-	   Statement st = conn.createStatement();
-	   String query = "SELECT name, description, price, contact, hash FROM items WHERE id=" + item_id;
-	   ResultSet result = st.executeQuery(query);
-	   
-	   if (result.next()) {
-	       // item found
-	       item_found = true;
-	       String title = result.getString("name");
-	       String description = result.getString("description");
-	       Long price = result.getLong("price");
-	       String contact = result.getString("contact");
-	       String hash_reference = result.getString("hash");
-	       if (hash_attempt != null && hash_attempt.contentEquals(hash_reference)) {
-		   hash_ok = true;
-	       }
-
-	       // render it
-%>
-	   <h1>Item details</h1>
-	   <div id="content">
-	     <div><div class="label">Name </div><div class="field"><%=title%></div></div><br/>
-	     <div>
-	       <div class="label">Description </div>
-	       <div class="field"><%=description%></div>
-	       </div><br/>
-	       <div><div class="label">Price </div><div class="field"><%=price%></div></div><br/>
-	       <div><div class="label">Contact </div><div class="field"><%=contact%></div></div><br/>
-	       </div><br/>
-
-
-<%
-		}
-	   // close db connection
-	   result.close();
-	   st.close();
-	   conn.close();
+		   Statement st = conn.createStatement();
+		   String query = "SELECT name, description, price, contact, date, hash FROM items WHERE id=" + item_id;
+		   ResultSet result = st.executeQuery(query);
+		   
+		   if (result.next()) {
+		       // item found
+		       item_found = true;
+		       String title = result.getString("name");
+		       String description = result.getString("description");
+		       String price = result.getString("price");
+		       String contact = result.getString("contact");
+		       String date = result.getString("date");
+		       String hash_reference = result.getString("hash");
+		       if (hash_attempt != null && hash_attempt.contentEquals(hash_reference)) {
+			   hash_ok = true;
+		       }
+	
+		       // render it
+	%>
+		   <h1>Item details</h1>
+		   <div id="content">
+		     <div><div class="label">Name </div><div class="field"><%=title%></div></div><br/>
+		     <div>
+		     	<div class="label">Description </div><div class="field"><%=description%></div><br/>
+	       		<div><div class="label">Price </div><div class="field"><%=price%></div></div><br/>
+	       		<div><div class="label">Contact </div><div class="field"><%=contact%></div></div><br/>
+				<div><div class="label">Publication date </div><div class="field"><%=date%></div></div><br/>
+	
+	<%
+			}
+		   // close db connection
+		   result.close();
+		   st.close();
+		   conn.close();
 
        }
        if (!item_found) {

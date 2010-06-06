@@ -1,5 +1,22 @@
 .center {text-align: center;}
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: navy;
+}
+
+.header {
+	padding-bottom: 30px;
+	border-bottom: 1px solid grey;
+}
+
 .help {
     font-size: 12px;
     color: gray;
@@ -12,11 +29,24 @@ label, .label {
     text-align: right;
     font-weight: bold;
     clear: left;
+    font-family: Cambria, "Times New Roman", serif;
+    color: grey
 }
 
 .field { width: 700px; }
 
-h1 { margin-left: 240px; }
+h1 { 
+	margin-left: 240px;
+	margin-top: 40px;
+	font-family: Cambria, "Times New Roman", serif;
+	color: grey;
+	font-style: italic; 
+}
+
+h2 { 
+	font-family: Cambria, "Times New Roman", serif;
+	color: grey; 
+}
 
 #content { margin-bottom: 3px; }
 
@@ -28,13 +58,48 @@ body {
 }
 
 #result_buy {
-    float: left;
-    width: 350px;
+    float: right;
+    width: 355px;
+    padding-left: 20px;
 }
 
 #result_sell {
-    float: left; 
-    width: 350px;
+	float: left;
+	width: 355px;
+	padding-right: 20px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+p, th { font-family: Cambria, "Times New Roman", serif; }
+
+td.name {
+	width: 180px;
+	border-right: 1px solid grey;
+}
+
+th.name {
+	width: 180px;
+}
+
+td.price {
+	width: 72px;
+	border-right: 1px solid grey;
+}
+
+th.price {
+	width: 72px;
+}
+
+th.location, td.location {
+	width: 108px;
+}
+
+td {
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 #downpage{
@@ -60,4 +125,9 @@ body {
 
 a img {
     border: none;
+}
+
+.options {
+	float: right;
+	font-size: 12px;
 }

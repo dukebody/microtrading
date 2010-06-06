@@ -67,15 +67,15 @@ if (submitted == null) { // the user hasn't filled in the form yet
 	// end of if
 	}
 	else { // The form has already been filled.
-	    Float p;
-	    if (price != null) {
-		p = Float.valueOf(price);
-	    }
+	    //String p;
+	    //if (price != null) {
+		//p = Float.toString(price);
+	    //}
 	    int buy;
 	    if (sell_buy.equals("buy")==true) {buy = 1;}
 	    else {buy = 0;}
 		String query = "INSERT INTO items(name, description, price, date, location, contact, buy_sell, hash)" +
-					   String.format("VALUES('%s', '%s', %s, NOW(), '%s', '%s', '%d', '%s')", name, description, p, location, contact, buy, "");
+					   String.format("VALUES('%s', '%s', %s, NOW(), '%s', '%s', '%d', '%s')", name, description, price, location, contact, buy, "");
 		
 		Connection conn = null;
 		// load the mysql db driver
@@ -102,10 +102,10 @@ if (submitted == null) { // the user hasn't filled in the form yet
 		%>
 		<p>
 			Your request has been registered.<br/><br/>
-			<a href="item.jsp?name=<%=name%>&amp;description=<%=description%>&amp;price=<%=price%>&amp;location=<%=location%>&amp;contact=<%=contact%>&amp;sell_buy=<%=sell_buy%>&amp;date=now">
+			<a href="#" onclick="window.open('item.jsp?id=1','pop1','width=600,height=600')";>
 				See the details
 			</a><br/><br/>
-			<a href="result.jsp?item=<%=name%>">
+			<a href="result.jsp?item=<%=name%>&search_options=date+DESC">
 				See related results
 			</a>
 		</p>
