@@ -73,8 +73,8 @@ if (submitted == null) { // the user hasn't filled in the form yet
 	    int buy;
 	    if (sell_buy.equals("buy")==true) {buy = 1;}
 	    else {buy = 0;}
-		String query = "INSERT INTO items(name, description, price, date, location, contact, buy_sell, hash)" +
-					   String.format("VALUES('%s', '%s', %s, NOW(), '%s', '%s', '%d', '%s')", name, description, price, location, contact, buy, "");
+		String query = "INSERT INTO items(name, description, price, date, location, contact, buy_sell)" +
+					   String.format("VALUES('%s', '%s', %s, NOW(), '%s', '%s', '%d')", name, description, price, location, contact, buy);
 		
 		Connection conn = null;
 		// load the mysql db driver

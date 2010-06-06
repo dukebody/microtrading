@@ -34,6 +34,5 @@ CREATE TABLE IF NOT EXISTS `items` (
   `location` varchar(255) DEFAULT NULL,
   `contact` varchar(255) NOT NULL,
   `buy_sell` tinyint(1) NOT NULL,
-  `hash` char(8) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;

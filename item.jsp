@@ -1,8 +1,6 @@
 <%@page session="false" %>
 <%@page import="java.sql.*" %><%@page import="java.text.DateFormat" %>
 <% String item_id = request.getParameter("id");
-String hash_attempt = request.getParameter("hash");
-Boolean hash_ok = false;
 Boolean item_found = false;%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -35,7 +33,7 @@ Boolean item_found = false;%>
        // issue a query and read the results
        if (conn != null && item_id != null && item_id.length()>0) {
 		   Statement st = conn.createStatement();
-		   String query = "SELECT name, description, price, contact, date, hash FROM items WHERE id=" + item_id;
+		   String query = "SELECT name, description, price, contact, date FROM items WHERE id=" + item_id;
 		   ResultSet result = st.executeQuery(query);
 		   
 		   if (result.next()) {
@@ -46,11 +44,6 @@ Boolean item_found = false;%>
 		       String price = result.getString("price");
 		       String contact = result.getString("contact");
 		       Date date = result.getDate("date");
-		       String hash_reference = result.getString("hash");
-		       if (hash_attempt != null && hash_attempt.contentEquals(hash_reference)) {
-			   hash_ok = true;
-		       }
-	
 		       String date_text = DateFormat.getTimeInstance(DateFormat.FULL).format(date);
 
 		       // render it
@@ -88,18 +81,6 @@ Boolean item_found = false;%>
 
 
 %>
-
-       <div>
-
-<%
-     if (hash_ok)
-     {
-
-out.println("<p style=\"margin-right:500px; float:left\"><a href=\"form.jsp?hash=" + hash_attempt + "\" />Edit</a></p>");
-
-     }
-%>
-       </div>
   </body>
 
 </html>

@@ -6,6 +6,5 @@ CREATE TABLE items
  date timestamp not null, 
  location char(100),
  contact char(100) not null,
- buy_sell boolean not null,
- hash char(8) not null
+ buy_sell boolean not null
 );
