@@ -69,7 +69,7 @@ table {
 	border-collapse: collapse;
 }
 
-p, th { font-family: Cambria, "Times New Roman", serif; }
+th { font-family: Cambria, "Times New Roman", serif; }
 
 th {
     text-align: left;
