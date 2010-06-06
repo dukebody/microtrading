@@ -31,6 +31,9 @@ String contact = request.getParameter("contact");
 contact = (contact != null) ? contact : "";
 
 String submitted = request.getParameter("submit");
+
+Integer newid = 1;
+
 if (submitted == null) { // the user hasn't filled in the form yet
     %>	
 		<form action="form.jsp" method="post" onsubmit="return validateForm(this);">
@@ -87,9 +90,13 @@ if (submitted == null) { // the user hasn't filled in the form yet
 			// connect to the database
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/simpletrade","simpletrade", "simpletrade");
 			if (conn != null) {
-				Statement st = conn.createStatement();
-				st.executeUpdate(query);
-				st.close();
+			    Statement stmt = conn.createStatement();
+			    stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);			    
+			    ResultSet resultSet = stmt.getGeneratedKeys(); 
+	
+			    resultSet.next();
+			    newid = resultSet.getInt(1); 
+			    stmt.close();
 			}
 		}
 		catch (SQLException e) {
@@ -98,10 +105,10 @@ if (submitted == null) { // the user hasn't filled in the form yet
 		%>
 		<p>
 			Your request has been registered.<br/><br/>
-			<a href="#" onclick="window.open('item.jsp?id=1','pop1','width=600,height=600')";>
+			<a href="#" onclick="window.open('item.jsp?id=<%=newid%>','pop1','width=600,height=600')";>
 				See the details
 			</a><br/><br/>
-			<a href="result.jsp?item=<%=name%>&search_options=date+DESC">
+			<a href="result.jsp?item=<%=name%>&search_options=date">
 				See related results
 			</a>
 		</p>
