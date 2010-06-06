@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%@page import="java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
@@ -70,12 +71,11 @@ if (submitted == null) { // the user hasn't filled in the form yet
 	// end of if
 	}
 	else { // The form has already been filled.
-	    int buy;
-	    if (sell_buy.equals("buy")==true) {buy = 1;}
-	    else {buy = 0;}
-		String query = "INSERT INTO items(name, description, price, date, location, contact, buy_sell)" +
-					   String.format("VALUES('%s', '%s', %s, NOW(), '%s', '%s', '%d')", name, description, price, location, contact, buy);
-		
+	    Calendar stCal = Calendar.getInstance();
+	    java.sql.Date now = new java.sql.Date(stCal.getTimeInMillis());
+	    Boolean buy;
+	    if (sell_buy.equals("buy")==true) {buy = true;}
+	    else {buy = false;}		
 		Connection conn = null;
 		// load the mysql db driver
 		try {
@@ -90,8 +90,16 @@ if (submitted == null) { // the user hasn't filled in the form yet
 			// connect to the database
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/simpletrade","simpletrade", "simpletrade");
 			if (conn != null) {
-			    Statement stmt = conn.createStatement();
-			    stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);			    
+			    String query = "INSERT INTO items (name, description, price, date, location, contact, buy_sell) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			    PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			    stmt.setString(1, name);
+			    stmt.setString(2, description);
+			    stmt.setString(3, price);
+			    stmt.setDate(4, now);
+			    stmt.setString(5, location);
+			    stmt.setString(6, contact);
+			    stmt.setBoolean(7, buy);
+			    stmt.executeUpdate();			    
 			    ResultSet resultSet = stmt.getGeneratedKeys(); 
 	
 			    resultSet.next();
