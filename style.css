@@ -20,13 +20,14 @@ a:visited {
 
 label, .label {
     float: left; 
-    width: 80px;
+    width: 230px;
     margin-right: 10px;
     text-align: right;
     font-weight: bold;
     clear: left;
     font-family: Cambria, "Times New Roman", serif;
-    color: gray
+    color: grey;
+	font-size: 15px;
 }
 
 .field { width: 700px; }
@@ -35,15 +36,19 @@ h1 {
 	font-family: Cambria, "Times New Roman", serif;
 	color: gray;
 	font-style: italic; 
+	margin-left: 240px;
 }
 
 h2 { 
 	font-family: Cambria, "Times New Roman", serif;
 	color: gray; 
-	margin-bottom: 3px;
+	margin-bottom: 20px;
 }
 
-#content { margin-bottom: 3px; }
+#content { 
+	margin-bottom: 3px; 
+	font-size: 15px;
+}
 
 body {
     width: 760px;
@@ -71,12 +76,15 @@ table {
 
 th {
     text-align: left;
+	font-size: 15px;
+	padding-bottom: 10px;
 }
 
 td {
     border: 1px solid gray;
     padding-left: 5px;
     padding-right: 5px;
+	font-size: 15px;
 }
 
 th.name {
