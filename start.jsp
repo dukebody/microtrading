@@ -8,17 +8,16 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		<div class="center"> 
-			<img src="images/simpletradelogo2.jpg" alt="logo"/>
-		</div>
-		<br />
 		<%
 		String option = request.getParameter("search_options"); 
 		// Search options chosen by the user or the default search option, i.e. sorting by date.
 		%>
-		<a href="options.jsp?search_options=<%=option %>" class="options">Advanced search</a>
 		<form action="result.jsp" method="get">
 			<div class="center">
+			  <div class="center"> 
+			    <img src="images/simpletradelogo2.jpg" alt="logo"/>
+			  </div>
+			  <br />
 				<input name="item" id ="item" type="text" size="60" />
 				<input name="search_options" id="search_options" type="hidden" value="<%=option %>" />
 				<input name="submit" type="submit" value="Trade now!" />
@@ -29,6 +28,7 @@
 		<div class="center footer">
 			<a href="aboutUs.html">About Us</a>
 			<a href="tos.html">Terms of Service</a>
+			<a href="options.jsp?search_options=<%=option %>">Advanced search</a>
 		</div>
 	</body>
 </html>
