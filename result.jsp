@@ -80,7 +80,7 @@ String link_item;
 
 	    <table>
 	      <tr>
-		<th class="name">Name</th><th class="price">Price</th><th class="location">Location</th>
+		<th class="name">Name</th><th class="price">Price (€)</th><th class="location">Location</th>
 	      </tr>
 	    <%  	
 	      ResultSet result_sell = st.executeQuery(query_sell);
@@ -107,7 +107,7 @@ String link_item;
 	   <h2 class="center">Requested</h2>
 	    <table>
 	      <tr>
-		<th class="name">Name</th><th class="price">Price</th><th class="location">Location</th>
+		<th class="name">Name</th><th class="price">Price (€)</th><th class="location">Location</th>
 	      </tr>			
 	      <%  	
 	       ResultSet result_buy = st.executeQuery(query_buy);

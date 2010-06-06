@@ -38,16 +38,16 @@ if (submitted == null) { // the user hasn't filled in the form yet
     %>	
 		<form action="form.jsp" method="post" onsubmit="return validateForm(this);">
 		<!-- the form cannot be posted without a name and a contact, and the price must be numeric. !-->
-				<label for="name">Name </label><input name="name" id="name" type="text" value="<%=name%>"/>
+				<label for="name">Name </label><input name="name" id="name" type="text" maxlength="100" value="<%=name%>"/>
 				<br/><br/>
 				<label for="description">Description </label>
 				<textarea name="description" id="description" rows="4" cols="50"><%=description%></textarea>
 				<br/><br/>
-				<label for="price">Price in EUR </label><input name="price" id="price" type="text" value="<%=price%>" />
+				<label for="price">Price in EUR </label><input name="price" id="price" type="text" maxlength="10" value="<%=price%>" />
 				<br/><br/>
-				<label for="location">Location </label><input name="location" id="location" type="text" value="<%=location%>"/>
+				<label for="location">Location </label><input name="location" id="location" type="text" maxlength="100" value="<%=location%>"/>
 				<br/><br/>
-				<label for="contact">Contact </label><input name="contact" id="contact" type="text" value="<%=contact%>"/>
+				<label for="contact">Contact </label><input name="contact" id="contact" type="text" maxlength="80" value="<%=contact%>"/>
 				<br/><br/>
 				<span class="label">You want to</span>	
 				<!-- pre-selection of "sell" or "buy" according to the choice of the user on the page "result"!-->
