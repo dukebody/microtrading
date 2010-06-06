@@ -67,10 +67,6 @@ if (submitted == null) { // the user hasn't filled in the form yet
 	// end of if
 	}
 	else { // The form has already been filled.
-	    //String p;
-	    //if (price != null) {
-		//p = Float.toString(price);
-	    //}
 	    int buy;
 	    if (sell_buy.equals("buy")==true) {buy = 1;}
 	    else {buy = 0;}
