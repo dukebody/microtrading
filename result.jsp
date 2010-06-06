@@ -5,8 +5,8 @@
 String keywords = request.getParameter("item");
 String option = request.getParameter("search_options");
 
-String query_sell = "SELECT * FROM items WHERE buy_sell=0 AND name LIKE '%" + keywords + "%'";
-String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + keywords + "%'";
+String query_sell = "SELECT * FROM items WHERE buy_sell=0 AND name LIKE ?";
+String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE ?";
 
 if (option.equals("name") || option.equals("price") || option.equals("date")) {
     String asc_desc;
@@ -71,7 +71,6 @@ String link_item;
 		// connect to the database
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/simpletrade","simpletrade", "simpletrade");
 		if (conn != null) {
-			Statement st = conn.createStatement();
 	%>
 	<br style="clear: both;" />
 	
@@ -82,8 +81,11 @@ String link_item;
 	      <tr>
 		<th class="name">Name</th><th class="price">Price (€)</th><th class="location">Location</th>
 	      </tr>
-	    <%  	
-	      ResultSet result_sell = st.executeQuery(query_sell);
+	    <%
+		
+              PreparedStatement stmt = conn.prepareStatement(query_sell);
+              stmt.setString(1, "%" + keywords + "%");
+	      ResultSet result_sell = stmt.executeQuery();
 	      while (result_sell.next()) {
 		  id = result_sell.getInt("id");
                   name = result_sell.getString("name");
@@ -109,8 +111,10 @@ String link_item;
 	      <tr>
 		<th class="name">Name</th><th class="price">Price (€)</th><th class="location">Location</th>
 	      </tr>			
-	      <%  	
-	       ResultSet result_buy = st.executeQuery(query_buy);
+	      <%
+               stmt = conn.prepareStatement(query_buy);
+               stmt.setString(1, "%" + keywords + "%");
+	       ResultSet result_buy = stmt.executeQuery();
 	       while (result_buy.next()) {
 		   id = result_buy.getInt("id");
 	           name = result_buy.getString("name");
@@ -134,7 +138,7 @@ String link_item;
 			<%
 			result_sell.close();
 			result_buy.close();
-			st.close();
+			stmt.close();
 			%>
 	<%
 		// end of if
