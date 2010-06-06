@@ -11,7 +11,7 @@
 		<h1>
 			Search options
 		</h1>
-		<form action="start.jsp" method="get">
+		<form action="index.jsp" method="get">
 		  <p>
 			<%
 			// Depending on the request, on of the three radio buttons will be checked.
