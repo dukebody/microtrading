@@ -69,8 +69,6 @@ table {
 	border-collapse: collapse;
 }
 
-th { font-family: Cambria, "Times New Roman", serif; }
-
 th {
     text-align: left;
 }
@@ -81,15 +79,15 @@ td {
     padding-right: 5px;
 }
 
-td.name {
+th.name {
 	width: 180px;
 }
 
-td.price {
+th.price {
 	width: 72px;
 }
 
-td.location {
+th.location {
 	width: 108px;
 }
 
