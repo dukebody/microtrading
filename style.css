@@ -14,7 +14,7 @@ a:visited {
 
 .header {
 	padding-bottom: 30px;
-	border-bottom: 1px solid grey;
+	border-bottom: 1px solid gray;
 }
 
 .help {
@@ -30,7 +30,7 @@ label, .label {
     font-weight: bold;
     clear: left;
     font-family: Cambria, "Times New Roman", serif;
-    color: grey
+    color: gray
 }
 
 .field { width: 700px; }
@@ -39,13 +39,13 @@ h1 {
 	margin-left: 240px;
 	margin-top: 40px;
 	font-family: Cambria, "Times New Roman", serif;
-	color: grey;
+	color: gray;
 	font-style: italic; 
 }
 
 h2 { 
 	font-family: Cambria, "Times New Roman", serif;
-	color: grey; 
+	color: gray; 
 }
 
 #content { margin-bottom: 3px; }
@@ -75,31 +75,22 @@ table {
 
 p, th { font-family: Cambria, "Times New Roman", serif; }
 
-td.name {
-	width: 180px;
-	border-right: 1px solid grey;
+td {
+    border: 1px solid gray;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-th.name {
+td.name {
 	width: 180px;
 }
 
 td.price {
 	width: 72px;
-	border-right: 1px solid grey;
 }
 
-th.price {
-	width: 72px;
-}
-
-th.location, td.location {
+td.location {
 	width: 108px;
-}
-
-td {
-	padding-left: 5px;
-	padding-right: 5px;
 }
 
 #downpage{
