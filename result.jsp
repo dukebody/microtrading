@@ -87,7 +87,7 @@ String link_item;
 	     %>
 		
 	       <tr>
-		 <td class="name"><a href="#" onclick="window.open('item.jsp?id=<%=id%>','pop1','width=600,height=600')";><%=name %></a></td>
+		 <td class="name"><a href="#" onclick="window.open('item.jsp?id=<%=id%>','pop1','width=600,height=600')"><%=name %></a></td>
 		 <td class="price"><%= price %></td>
 		 <td class="location"><%=location%></td>
 	       </tr>	   
@@ -115,7 +115,7 @@ String link_item;
 
 		
 	      <tr>
-		<td class="name"><a href="#" onclick="window.open('item.jsp?id=<%=id%>','pop1','width=600,height=600')";><%=name %></a></td>
+		<td class="name"><a href="#" onclick="window.open('item.jsp?id=<%=id%>','pop1','width=600,height=600')"><%=name %></a></td>
 		<td class="price"><%= price %></td>
 		<td class="location"><%=location%></td>
 	      </tr>	   
