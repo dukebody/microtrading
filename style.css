@@ -46,6 +46,7 @@ h1 {
 h2 { 
 	font-family: Cambria, "Times New Roman", serif;
 	color: gray; 
+	margin-bottom: 3px;
 }
 
 #content { margin-bottom: 3px; }
