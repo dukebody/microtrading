@@ -8,7 +8,7 @@ String option = request.getParameter("search_options");
 String query_sell = "SELECT * FROM items WHERE buy_sell=0 AND name LIKE '%" + keywords + "%'";
 String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + keywords + "%'";
 
-if (option != null) {
+if (option == "name" || option == "price" || option == "date") {
 	query_sell = query_sell + " ORDER BY " + option;
 	query_buy = query_buy + " ORDER BY " + option;
 }
