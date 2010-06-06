@@ -55,6 +55,7 @@ body {
     margin: auto; 
     margin-top: 20px; 
     margin-bottom: 20px; 
+    font-size: small;
 }
 
 #result_buy {
