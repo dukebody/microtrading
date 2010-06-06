@@ -9,8 +9,16 @@ String query_sell = "SELECT * FROM items WHERE buy_sell=0 AND name LIKE '%" + ke
 String query_buy = "SELECT * FROM items WHERE buy_sell=1 AND name LIKE '%" + keywords + "%'";
 
 if (option.equals("name") || option.equals("price") || option.equals("date")) {
-	query_sell = query_sell + " ORDER BY " + option;
-	query_buy = query_buy + " ORDER BY " + option;
+    String asc_desc;
+    if (option.equals("date")) {
+        asc_desc = " DESC";
+    }
+    else {
+	asc_desc = " ASC";
+    }
+	    
+    query_sell = query_sell + " ORDER BY " + option + asc_desc;
+    query_buy = query_buy + " ORDER BY " + option + asc_desc;
 }
 
 Integer id;
