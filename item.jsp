@@ -1,5 +1,5 @@
 <%@page session="false" %>
-<%@page import="java.sql.*" %>
+<%@page import="java.sql.*" %><%@page import="java.text.DateFormat" %>
 <% String item_id = request.getParameter("id");
 String hash_attempt = request.getParameter("hash");
 Boolean hash_ok = false;
@@ -45,22 +45,36 @@ Boolean item_found = false;%>
 		       String description = result.getString("description");
 		       String price = result.getString("price");
 		       String contact = result.getString("contact");
-		       String date = result.getString("date");
+		       Date date = result.getDate("date");
 		       String hash_reference = result.getString("hash");
 		       if (hash_attempt != null && hash_attempt.contentEquals(hash_reference)) {
 			   hash_ok = true;
 		       }
 	
+		       String date_text = DateFormat.getTimeInstance(DateFormat.FULL).format(date);
+
 		       // render it
 	%>
 		   <h1>Item details</h1>
 		   <div id="content">
-		     <div><div class="label">Name </div><div class="field"><%=title%></div></div><br/>
-		     <div>
-		     	<div class="label">Description </div><div class="field"><%=description%></div><br/>
-	       		<div><div class="label">Price </div><div class="field"><%=price%></div></div><br/>
-	       		<div><div class="label">Contact </div><div class="field"><%=contact%></div></div><br/>
-				<div><div class="label">Publication date </div><div class="field"><%=date%></div></div><br/>
+		     <table>
+		       <tr>
+			 <td>Name</td><td><%=title%></td>
+		       </tr>
+		       <tr>
+			 <td>Description</td><td><%=description%></td>
+		       </tr>
+		       <tr>
+			 <td>Price (€)</td><td><%=price%></td>
+		       </tr>
+		       <tr>
+			 <td>Contact</td><td><%=contact%></td>
+		       </tr>
+		       <tr>
+			 <td>Date</td><td><%=date%></td>
+		       </tr>
+		     </table>
+		     <br/>
 	
 	<%
 			}

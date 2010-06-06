@@ -59,7 +59,7 @@ if (submitted == null) { // the user hasn't filled in the form yet
 				<input name="sell_buy" id="buy" value="buy" type="radio" checked="checked" />Buy
 		<%}%>
 				<br/><br/>
-				<div class="center">
+				<div>
 					<input name="submit" type="submit" value="Post"/>
 				</div>
 		</form>
