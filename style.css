@@ -75,6 +75,10 @@ table {
 
 p, th { font-family: Cambria, "Times New Roman", serif; }
 
+th {
+    text-align: left;
+}
+
 td {
     border: 1px solid gray;
     padding-left: 5px;
