@@ -128,3 +128,8 @@ a img {
 	float: right;
 	font-size: 12px;
 }
+
+.emph {
+    font-size: large;
+    font-weight: bold;
+}
