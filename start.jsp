@@ -23,7 +23,6 @@
 				<input name="search_options" id="search_options" type="hidden" value="<%=option %>" />
 				<input name="submit" type="submit" value="Trade now!" />
 			</div>
-			<br/>
 			<div class="center help">e.g.: Computer Dell Inspiron 2 years</div>
 		</form>
 		<br />
